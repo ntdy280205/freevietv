@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Free Vietnamese TV</title>
+  <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
+  <link href="tv.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Player bên trái -->
+  <div class="player-container" id="playerContainer">
+    <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto"
+           poster="images/tv247_background.png">
+      <source src="http://125hvt.ddns.net:21585/vtv1/tracks-v1a1/mono.m3u8" type="application/x-mpegURL" />
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+  </div>
+
+  <!-- Danh sách kênh bên phải (iframe) -->
+  <div class="channel-list">
+    <iframe src="channels.html" class="channel-frame"></iframe>
+  </div>
+
+  <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+  <script>
+    const player = videojs('my-video');
+    const container = document.getElementById('playerContainer');
+
+    // poster nền ban đầu
+    container.style.setProperty('--poster', 'url("https://test-streams.mux.dev/x36xhzz/poster.jpg")');
+
+    // Nhận sự kiện từ iframe channels.html
+    window.addEventListener("message", e => {
+      if (e.data && e.data.src) {
+        const src = e.data.src;
+        const poster = e.data.poster || '';
+        if (poster) {
+          player.poster(poster);
+          container.style.setProperty('--poster', `url("${poster}")`);
+        }
+        player.src({ src, type: 'application/x-mpegURL' });
+        player.play();
+      }
+    });
+  </script>
+</body>
+</html>
