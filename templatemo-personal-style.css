@@ -332,7 +332,7 @@ https://templatemo.com/tm-593-personal-shape
     justify-content: center;
     background: 
         linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3)), /* overlay tối để chữ rõ */
-        url('images/anh_nen_test.webp') center/cover no-repeat;
+        url('https://raw.githubusercontent.com/ntdy280205/freevietv/refs/heads/live-tv/images/anh_nen_test.webp') center/cover no-repeat;
     position: relative;
     overflow: hidden;
 }
@@ -1254,4 +1254,5 @@ https://templatemo.com/tm-593-personal-shape
 }
 .cta-button {
     animation: fadeInUp 1.5s ease 0.8s forwards;
+
 }
