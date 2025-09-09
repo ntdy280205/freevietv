@@ -61,10 +61,10 @@ body {
 
 /* ---------------- Mobile ---------------- */
 @media (max-width: 768px) {
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
+  .player-container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
   }
 
     .player-container {
@@ -79,7 +79,7 @@ body {
   .player-container .vjs-tech {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important; /* giữ nguyên tỷ lệ, KHÔNG crop */
   }
 
   .channel-list {
@@ -129,6 +129,7 @@ body {
     opacity: 0; /* tự ẩn khi không thao tác */
   }
 }
+
 
 
 
