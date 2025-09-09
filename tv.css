@@ -68,8 +68,6 @@ body {
   }
 
     .player-container {
-  flex: 0 0 auto;
-  width: 100%;
   aspect-ratio: 16 / 9;
   }
 
@@ -85,15 +83,11 @@ body {
   }
 
   .channel-list {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  padding-bottom: 50px;
+  height: 75vh;
   }
 
   .channel-frame {
-    width: 100%;
     height: 100%;
-    border: none;
   }
 
 /* ---------------- Desktop ---------------- */
@@ -135,6 +129,7 @@ body {
     opacity: 0; /* tự ẩn khi không thao tác */
   }
 }
+
 
 
 
