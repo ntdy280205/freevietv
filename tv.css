@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  height: 100vh;
   background: #0f172a;
   color: #fff;
   font-family: sans-serif;
+  display: flex;
+  height: 100vh;
 }
 
 /* Player bên trái */
@@ -59,79 +59,58 @@ body {
   border: none;
 }
 
-/* ---------------- Mobile ---------------- */
+/* ---------------- Mobile Layout ---------------- */
 @media (max-width: 768px) {
-  .player-container {
-    aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
+  body {
+    flex-direction: column !important;
   }
-
-    .player-container {
-  aspect-ratio: 16 / 9;
+  
+  .player-container {
+    width: 100% !important;
+    padding-top: 56.25%;
+    position: relative;
+  }
+  
+  .player-container .video-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+	width: 100% !important;
+    height: 100% !important;
   }
 
   .player-container::before {
     display: none;
   }
+  
+  .player-container .video-js .vjs-tech {
+    object-fit: cover !important; /* Thay đổi thành 'cover' để video lấp đầy khung hình */
+  }
 
-  .player-container .video-js,
-  .player-container .vjs-tech {
+  .channel-list {
     width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important; /* giữ nguyên tỷ lệ, KHÔNG crop */
+    flex: unset !important;
+    height: auto !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-
-  .channel-list {
-  height: 75vh;
+  
+   .channel-frame {
+    width: 100% !important;
+    height: calc(100vh - 56.25vw) !important; 
+    border: none;
   }
-
-  .channel-frame {
-    height: 100%;
-  }
-
-/* ---------------- Desktop ---------------- */
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    height: 100vh;
-  }
-
-  .player-container {
-    flex: 2;
-    height: 100%;       /* full chiều cao */
-    aspect-ratio: auto; /* bỏ ratio trên PC */
-  }
-
-  .player-container .vjs-tech {
-    object-fit: contain !important; /* giữ 16:9, không crop */
-  }
-
-  .channel-list {
-    flex: 1;
-    height: 100%;
-    max-height: none;
-    overflow: hidden;
-  }
-
-  /* Ẩn control bar mặc định trên mobile */
-@media (max-width: 768px) {
+  
   .vjs-control-bar {
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-
+  
   .vjs-has-started.vjs-user-active .vjs-control-bar {
-    opacity: 1; /* hiện khi user chạm */
+    opacity: 1;
   }
-
+  
   .vjs-has-started.vjs-user-inactive .vjs-control-bar {
-    opacity: 0; /* tự ẩn khi không thao tác */
+    opacity: 0;
   }
 }
-
-
-
-
-
-
-
-
