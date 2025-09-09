@@ -62,45 +62,42 @@ body {
 /* ---------------- Mobile Layout ---------------- */
 @media (max-width: 768px) {
   body {
-    flex-direction: column !important;
+    display: block !important;   /* Bỏ flex 2 cột, chuyển thành block */
+    height: auto !important;
   }
-  
+
   .player-container {
     width: 100% !important;
-    padding-top: 56.25%;
+    padding-top: 56.25%;   /* 16:9 */
     position: relative;
   }
-  
+
   .player-container .video-js {
     position: absolute;
     top: 0;
     left: 0;
-	width: 100% !important;
+    width: 100% !important;
     height: 100% !important;
   }
 
   .player-container::before {
     display: none;
   }
-  
-  .player-container .video-js .vjs-tech {
-    object-fit: cover !important; /* Thay đổi thành 'cover' để video lấp đầy khung hình */
-  }
 
   .channel-list {
     width: 100% !important;
-    flex: unset !important;
     height: auto !important;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    flex: unset !important;  /* Xóa flex cột */
   }
-  
-   .channel-frame {
+
+  .channel-frame {
     width: 100% !important;
     height: calc(100vh - 56.25vw) !important; 
     border: none;
   }
-  
+
   .vjs-control-bar {
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -114,3 +111,4 @@ body {
     opacity: 0;
   }
 }
+
