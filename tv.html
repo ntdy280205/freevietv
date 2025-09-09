@@ -10,11 +10,17 @@
 
   <!-- Player bên trái -->
   <div class="player-container" id="playerContainer">
-    <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto"
-           poster="images/tv247_background.png">
-      <source src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" type="application/x-mpegURL" />
-      Trình duyệt của bạn không hỗ trợ video.
-    </video>
+<video id="my-video" 
+       class="video-js vjs-big-play-centered" 
+       controls 
+       autoplay 
+       muted 
+       playsinline 
+       preload="auto"
+       poster="images/tv247_background.png">
+  <source src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" type="application/x-mpegURL" />
+  Vui lòng nâng cấp phiên bản trình duyệt hoặc thiết bị để có thể xem chương trình này.
+</video>
   </div>
 
   <!-- Danh sách kênh bên phải (iframe) -->
@@ -46,4 +52,5 @@
   </script>
 </body>
 </html>
+
 
