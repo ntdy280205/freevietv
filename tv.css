@@ -1,18 +1,19 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
   background: #0f172a;
   color: #fff;
+  font-family: sans-serif;
 }
 
-/* Player container */
+/* Player bên trái */
 .player-container {
+  flex: 2;
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9; /* giữ tỉ lệ 16:9 */
-  background: #000;
   overflow: hidden;
+  background: #000;
 }
 
 /* Background blur */
@@ -28,7 +29,7 @@ body {
   z-index: 0;
 }
 
-/* VideoJS */
+/* VideoJS giữ tỉ lệ 16:9 */
 .player-container .video-js {
   position: relative;
   z-index: 1;
@@ -40,16 +41,16 @@ body {
 .player-container .vjs-tech {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: contain !important; /* Giữ nguyên 16:9 */
   background: transparent;
 }
 
-/* Channel list */
+/* Danh sách kênh bên phải (iframe) */
 .channel-list {
-  width: 100%;
-  max-height: 40vh;
+  flex: 1;
   background: #1e293b;
-  overflow-y: auto;
+  padding: 0;
+  overflow: hidden;
 }
 
 .channel-frame {
@@ -58,22 +59,44 @@ body {
   border: none;
 }
 
-/* Desktop layout: chia 2 cột */
-@media (min-width: 1024px) {
+/* Responsive mobile */
+@media (max-width: 768px) {
   body {
-    display: flex;
-    height: 100vh;
+    display: block; /* bỏ flex ngang, xếp dọc */
+    height: auto;
   }
 
   .player-container {
-    flex: 2;
-    height: 100%; /* full chiều cao */
-    aspect-ratio: auto; /* bỏ ratio vì height đã fix */
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
+  }
+
+  /* tat blur tren mobile */
+  .player-container::before {
+    display: none;
   }
 
   .channel-list {
-    flex: 1;
-    max-height: none;
+    flex: none;
+    width: 100%;
+    height: auto;
+    max-height: 55vh; /* tăng chiều cao list kênh */
+    overflow-y: auto;
+  }
+
+  .channel-frame {
+    width: 100%;
     height: 100%;
+  }
+
+  /* Footer chỉ hiện trên mobile */
+  .footer {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    background: #0f172a;
   }
 }
