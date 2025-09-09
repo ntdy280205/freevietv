@@ -41,7 +41,7 @@ body {
 .player-container .vjs-tech {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important; /* Giữ nguyên 16:9 */
+  object-fit: contain !important;
   background: transparent;
 }
 
@@ -59,21 +59,26 @@ body {
   border: none;
 }
 
-/* Responsive mobile */
+/* Footer ẩn mặc định */
+.footer {
+  display: none;
+}
+
+/* ---------------- Mobile (≤768px) ---------------- */
 @media (max-width: 768px) {
   body {
-    display: block; /* bỏ flex ngang, xếp dọc */
-    height: auto;
+    display: block;   /* bỏ flex ngang */
+    height: auto;     /* cho auto chiều cao */
   }
 
   .player-container {
     flex: none;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
+    aspect-ratio: 16 / 9; /* giữ 16:9 */
   }
 
-  /* tat blur tren mobile */
+  /* Tắt blur nền trên mobile */
   .player-container::before {
     display: none;
   }
@@ -82,8 +87,9 @@ body {
     flex: none;
     width: 100%;
     height: auto;
-    max-height: 55vh; /* tăng chiều cao list kênh */
+    max-height: 65vh;     /* dài hơn để list thoải mái */
     overflow-y: auto;
+    padding-bottom: 40px; /* chừa chỗ cho footer */
   }
 
   .channel-frame {
@@ -91,15 +97,12 @@ body {
     height: 100%;
   }
 
-    /* Footer ẩn mặc định */
-.footer {
-  display: none;
-}
-    
-/* Footer chỉ hiện trên mobile */
-@media (max-width: 768px) {
   .footer {
     display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
     padding: 8px 0;
     font-size: 0.85rem;
@@ -108,3 +111,23 @@ body {
   }
 }
 
+/* ---------------- Desktop (≥1024px) ---------------- */
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    height: 100vh;
+  }
+
+  .player-container {
+    flex: 2;
+    height: 100%;     /* full chiều cao cột trái */
+    aspect-ratio: auto; /* bỏ ratio để không gây trống */
+  }
+
+  .channel-list {
+    flex: 1;
+    height: 100%;     /* full chiều cao cột phải */
+    max-height: none;
+    overflow: hidden;
+  }
+}
