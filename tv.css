@@ -91,8 +91,15 @@ body {
     height: 100%;
   }
 
-  /* Footer chỉ hiện trên mobile */
+    /* Footer ẩn mặc định */
+.footer {
+  display: none;
+}
+    
+/* Footer chỉ hiện trên mobile */
+@media (max-width: 768px) {
   .footer {
+    display: block;
     text-align: center;
     padding: 8px 0;
     font-size: 0.85rem;
@@ -100,3 +107,4 @@ body {
     background: #0f172a;
   }
 }
+
