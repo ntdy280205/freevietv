@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <title>Free Vietnamese TV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
-  <link href="tv.css" rel="stylesheet" />
+  <link href="tv.css?v=1" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Player bên trái -->
+  <!-- Player -->
   <div class="player-container" id="playerContainer">
-<video id="my-video" 
-       class="video-js vjs-big-play-centered" 
-       controls 
-       autoplay 
-       muted 
-       playsinline 
-       preload="auto"
-       poster="images/tv247_background.png">
-  <source src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" type="application/x-mpegURL" />
-  Vui lòng nâng cấp phiên bản trình duyệt hoặc thiết bị để có thể xem chương trình này.
-</video>
+    <video id="my-video" 
+           class="video-js vjs-big-play-centered" 
+           controls 
+           autoplay 
+           muted 
+           playsinline 
+           preload="auto"
+           poster="images/tv247_background.png">
+      <source src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" type="application/x-mpegURL" />
+      Vui lòng nâng cấp phiên bản trình duyệt hoặc thiết bị để có thể xem chương trình này.
+    </video>
   </div>
 
-  <!-- Danh sách kênh bên phải (iframe) -->
+  <!-- Danh sách kênh -->
   <div class="channel-list">
     <iframe src="channels.html" class="channel-frame"></iframe>
   </div>
@@ -33,10 +34,10 @@
     const player = videojs('my-video');
     const container = document.getElementById('playerContainer');
 
-    // poster nền ban đầu
-    container.style.setProperty('--poster', 'url("https://test-streams.mux.dev/x36xhzz/poster.jpg")');
+    // hình chờ loading kênh 
+    container.style.setProperty('--poster', 'url("images/tv247_background.png")');
 
-    // Nhận sự kiện từ iframe channels.html
+    // Import danh sách kênh từ iframe channels.html
     window.addEventListener("message", e => {
       if (e.data && e.data.src) {
         const src = e.data.src;
@@ -52,5 +53,3 @@
   </script>
 </body>
 </html>
-
-
