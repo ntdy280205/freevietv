@@ -60,28 +60,28 @@ body {
 /* Responsive mobile */
 @media (max-width: 768px) {
   body {
-    display: block; /* bỏ flex ngang, xếp dọc */
-    height: auto;
+    display: block;     /* bỏ flex ngang */
+    height: auto;       /* không ép 100vh */
   }
 
   .player-container {
+    flex: none;         /* reset giá trị từ desktop */
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
+    aspect-ratio: 16 / 9; /* giữ tỉ lệ 16:9 */
   }
 
-  .player-container .video-js,
-  .player-container .vjs-tech {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
+  /* Blur nền tắt trên mobile để gọn */
+  .player-container::before {
+    display: none;
   }
 
   .channel-list {
+    flex: none;         /* reset flex */
     width: 100%;
     height: auto;
-    max-height: 40vh; /* tối đa 40% chiều cao màn hình */
-    overflow-y: auto;
+    max-height: 40vh;   /* chiếm ~40% màn hình */
+    overflow-y: auto;   /* scroll nếu nhiều kênh */
   }
 
   .channel-frame {
