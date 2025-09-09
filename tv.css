@@ -4,7 +4,7 @@ body {
   background: #0f172a;
   color: #fff;
   font-family: sans-serif;
-  display: flex;
+  display: flex;        /* PC: 2 cột */
   height: 100vh;
 }
 
@@ -41,7 +41,7 @@ body {
 .player-container .vjs-tech {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important; /* PC giữ nguyên */
+  object-fit: contain !important; /* PC: giữ nguyên tỉ lệ */
   background: transparent;
 }
 
@@ -49,7 +49,6 @@ body {
 .channel-list {
   flex: 1;
   background: #1e293b;
-  padding: 0;
   overflow: hidden;
 }
 
@@ -59,16 +58,16 @@ body {
   border: none;
 }
 
-/* ---------------- Mobile Layout ---------------- */
+/* ---------------- Mobile (<=768px) ---------------- */
 @media (max-width: 768px) {
   body {
-    display: block !important;   /* Bỏ flex 2 cột, chuyển thành block */
-    height: auto !important;
+    flex-direction: column;   /* đổi sang dọc */
+    height: auto;             /* cao theo nội dung */
   }
 
   .player-container {
     width: 100% !important;
-    padding-top: 56.25%;   /* 16:9 */
+    padding-top: 56.25%;   /* giữ tỉ lệ 16:9 */
     position: relative;
   }
 
@@ -84,38 +83,31 @@ body {
     display: none;
   }
 
+  .player-container .video-js .vjs-tech {
+    object-fit: cover !important; /* mobile: video fill khung */
+  }
+
   .channel-list {
     width: 100% !important;
-    flex: unset !important;
+    flex: unset !important;   /* không còn flex cột */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-/* Giới hạn chiều cao */
-    max-height: 30vh;   /* chỉ chiếm 40% chiều cao màn hình */
-    margin-top: 10px;    /* thêm khoảng cách nhỏ dưới player */
-    border-top: 2px solid #0f172a; /* tùy chọn, để phân cách */
-  }
-  
   .channel-frame {
     width: 100% !important;
-    height: calc(100vh - 56.25vw) !important; 
     border: none;
   }
 
+  /* Ẩn control bar khi không thao tác */
   .vjs-control-bar {
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
   .vjs-has-started.vjs-user-active .vjs-control-bar {
     opacity: 1;
   }
-  
   .vjs-has-started.vjs-user-inactive .vjs-control-bar {
     opacity: 0;
   }
 }
-
-
-
