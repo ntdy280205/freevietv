@@ -62,8 +62,6 @@ body {
 /* ---------------- Mobile ---------------- */
 @media (max-width: 768px) {
   .player-container {
-    width: 100%;
-    height: auto;
     aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
   }
 
@@ -129,6 +127,7 @@ body {
     opacity: 0; /* tự ẩn khi không thao tác */
   }
 }
+
 
 
 
