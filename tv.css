@@ -29,7 +29,7 @@ body {
   z-index: 0;
 }
 
-/* VideoJS giữ tỉ lệ 16:9 */
+/* VideoJS giữ tỉ lệ */
 .player-container .video-js {
   position: relative;
   z-index: 1;
@@ -41,7 +41,7 @@ body {
 .player-container .vjs-tech {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: contain !important; /* PC giữ nguyên */
   background: transparent;
 }
 
@@ -64,18 +64,18 @@ body {
   display: none;
 }
 
-/* ---------------- Mobile (≤768px) ---------------- */
+/* ---------------- Mobile ---------------- */
 @media (max-width: 768px) {
   body {
-    display: block;   /* bỏ flex ngang */
-    height: auto;     /* cho auto chiều cao */
+    display: block;   /* xếp dọc */
+    height: auto;
   }
 
   .player-container {
     flex: none;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9; /* giữ 16:9 */
+    aspect-ratio: 16 / 9; /* giữ đúng 16:9 */
   }
 
   /* Tắt blur nền trên mobile */
@@ -83,11 +83,18 @@ body {
     display: none;
   }
 
+  .player-container .video-js,
+  .player-container .vjs-tech {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* ép lấp kín, bỏ khoảng trống */
+  }
+
   .channel-list {
     flex: none;
     width: 100%;
     height: auto;
-    max-height: 65vh;     /* dài hơn để list thoải mái */
+    max-height: 65vh;     /* list dài hơn */
     overflow-y: auto;
     padding-bottom: 40px; /* chừa chỗ cho footer */
   }
@@ -111,7 +118,7 @@ body {
   }
 }
 
-/* ---------------- Desktop (≥1024px) ---------------- */
+/* ---------------- Desktop ---------------- */
 @media (min-width: 1024px) {
   body {
     display: flex;
@@ -120,14 +127,33 @@ body {
 
   .player-container {
     flex: 2;
-    height: 100%;     /* full chiều cao cột trái */
-    aspect-ratio: auto; /* bỏ ratio để không gây trống */
+    height: 100%;       /* full chiều cao */
+    aspect-ratio: auto; /* bỏ ratio trên PC */
+  }
+
+  .player-container .vjs-tech {
+    object-fit: contain !important; /* giữ 16:9, không crop */
   }
 
   .channel-list {
     flex: 1;
-    height: 100%;     /* full chiều cao cột phải */
+    height: 100%;
     max-height: none;
     overflow: hidden;
+  }
+
+  /* Ẩn control bar mặc định trên mobile */
+@media (max-width: 768px) {
+  .vjs-control-bar {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .vjs-has-started.vjs-user-active .vjs-control-bar {
+    opacity: 1; /* hiện khi user chạm */
+  }
+
+  .vjs-has-started.vjs-user-inactive .vjs-control-bar {
+    opacity: 0; /* tự ẩn khi không thao tác */
   }
 }
