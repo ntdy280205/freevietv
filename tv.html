@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -19,13 +19,12 @@
            playsinline 
            preload="auto"
            poster="images/tv247_background.png">
-      <source src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" type="application/x-mpegURL" />
       Vui lòng nâng cấp phiên bản trình duyệt hoặc thiết bị để có thể xem chương trình này.
     </video>
   </div>
 
   <!-- Danh sách kênh -->
-  <div class="channel-list">
+  <div class="channel-list" id="channelList">
     <iframe src="channels.html" class="channel-frame" id="channelFrame"></iframe>
   </div>
 
@@ -33,12 +32,13 @@
   <script>
     const player = videojs('my-video');
     const container = document.getElementById('playerContainer');
-    const channelList = document.querySelector('.channel-list');
+    const channelList = document.getElementById('channelList');
+    const channelFrame = document.getElementById('channelFrame');
 
     // hình chờ loading kênh 
     container.style.setProperty('--poster', 'url("images/tv247_background.png")');
 
-    // Import danh sách kênh từ iframe channels.html
+    // Nhận tin nhắn từ iframe (khi click kênh)
     window.addEventListener("message", e => {
       if (e.data && e.data.src) {
         const src = e.data.src;
@@ -52,22 +52,43 @@
       }
     });
 
+    // Khi iframe load xong → phát kênh đầu tiên
+    channelFrame.addEventListener("load", () => {
+      try {
+        const doc = channelFrame.contentDocument || channelFrame.contentWindow.document;
+        const firstLink = doc.querySelector(".channel a");
+        if (firstLink) {
+          const src = firstLink.dataset.src;
+          const poster = firstLink.dataset.poster || '';
+          if (poster) {
+            player.poster(poster);
+            container.style.setProperty('--poster', `url("${poster}")`);
+          }
+          player.src({ src, type: 'application/x-mpegURL' });
+          player.play();
+        }
+      } catch (err) {
+        console.warn("Không lấy được kênh đầu tiên:", err);
+      }
+    });
+
     // Cập nhật kích thước iframe khi có thay đổi trên màn hình
     const updateLayout = () => {
-        if (window.innerWidth <= 768) {
-            const playerHeight = container.offsetHeight;
-            const windowHeight = window.innerHeight;
-            const newChannelListHeight = windowHeight - playerHeight;
-            channelList.style.height = `${newChannelListHeight}px`;
-        } else {
-            channelList.style.height = '100%';
-        }
+      if (window.innerWidth <= 768) {
+        const playerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const newChannelListHeight = windowHeight - playerHeight;
+        channelList.style.height = `${newChannelListHeight}px`;
+        channelFrame.style.height = `${newChannelListHeight}px`;
+      } else {
+        channelList.style.height = '100%';
+        channelFrame.style.height = '100%';
+      }
     };
 
-    // Chạy khi tải trang và khi thay đổi kích thước màn hình
-    window.onload = updateLayout;
-    window.onresize = updateLayout;
-
+    window.addEventListener("load", updateLayout);
+    window.addEventListener("resize", updateLayout);
+    window.addEventListener("orientationchange", updateLayout);
   </script>
 </body>
 </html>
