@@ -57,28 +57,35 @@ body {
   height: 100%;
   border: none;
 }
-/* Responsive cho mobile */
+/* Responsive mobile */
 @media (max-width: 768px) {
   body {
-    flex-direction: column; /* Xếp dọc thay vì ngang */
+    display: block; /* bỏ flex ngang, xếp dọc */
     height: auto;
   }
 
   .player-container {
-    flex: none;
     width: 100%;
-    height: 50vh; /* Player chiếm nửa màn hình */
+    height: auto;
+    aspect-ratio: 16 / 9; /* luôn giữ 16:9 */
+  }
+
+  .player-container .video-js,
+  .player-container .vjs-tech {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
   }
 
   .channel-list {
-    flex: none;
     width: 100%;
-    height: 50vh; /* Danh sách chiếm nửa màn hình */
-    overflow-y: auto; /* Cho phép scroll */
+    height: auto;
+    max-height: 40vh; /* tối đa 40% chiều cao màn hình */
+    overflow-y: auto;
   }
 
   .channel-frame {
-    height: 100%; /* Đảm bảo iframe lấp đầy phần list */
+    width: 100%;
+    height: 100%;
   }
 }
-
