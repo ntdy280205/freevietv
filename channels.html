@@ -4,26 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font riêng -->
+  <!-- Font -->
   <style>
     @font-face {
       font-family: 'MyCustomFont';
-      src: url('fonts/pinsansbold.ttf') format('ttf');
+      src: url('fonts/pinsansbold.ttf') format('woff2');
       font-weight: normal;
       font-style: normal;
     }
 
     body {
       margin: 0;
-      background: #0f0f0f;   /* nền tổng thể đen xám đậm */
+      background: #0f0f0f;   
       color: #fff;
       font-family: 'MyCustomFont', sans-serif;
     }
 
     .channel {
-      display: flex;                  /* kênh = flex row */
+      display: flex;                  
       align-items: center;
-      justify-content: space-between; /* tên trái - LIVE phải */
+      justify-content: space-between; 
       padding: 1rem;
       margin: .5rem;
       background: #1c1c1c;
@@ -40,7 +40,7 @@
     }
 
     .channel.active {
-      background: #dc2626; /* đỏ khi active */
+      background: #dc2626; 
       color: #fff;
     }
 
@@ -48,16 +48,16 @@
       background: #b91c1c;
     }
 
-    /* nhãn LIVE bên phải */
+    /* LIVE text */
     .channel span.live-label {
       margin-left: 1rem;
       font-size: 0.9rem;
       font-weight: bold;
       color: #fff;
-      display: none; /* mặc định ẩn */
+      display: none; 
     }
     .channel.active span.live-label {
-      display: inline-block; /* chỉ hiện khi active */
+      display: inline-block; 
     }
 
     /* Mobile */
@@ -91,7 +91,7 @@
     <span class="live-label">ĐANG PHÁT</span>
   </a>
   <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vntoday_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">
-    <span>VTV5</span>
+    <span>Vietnam Today</span>
     <span class="live-label">ĐANG PHÁT</span>
   </a>
 
