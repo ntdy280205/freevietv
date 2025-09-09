@@ -47,7 +47,25 @@
     .channel.active:hover {
       background: #b91c1c;
     }
+    
+.channel-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
+.channel-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px; /* bo nhẹ nếu muốn */
+  background: #fff;   /* nền trắng nếu logo có nền trong suốt */
+}
+
+.channel-name {
+  font-size: 1rem;
+}
+    
     /* LIVE text */
     .channel span.live-label {
       margin-left: 1rem;
