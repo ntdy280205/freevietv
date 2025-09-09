@@ -86,12 +86,17 @@ body {
 
   .channel-list {
     width: 100% !important;
-    height: auto !important;
+    flex: unset !important;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    flex: unset !important;  /* Xóa flex cột */
   }
 
+/* Giới hạn chiều cao */
+    max-height: 40vh;   /* chỉ chiếm 40% chiều cao màn hình */
+    margin-top: 8px;    /* thêm khoảng cách nhỏ dưới player */
+    border-top: 2px solid #0f172a; /* tùy chọn, để phân cách */
+  }
+  
   .channel-frame {
     width: 100% !important;
     height: calc(100vh - 56.25vw) !important; 
@@ -111,4 +116,5 @@ body {
     opacity: 0;
   }
 }
+
 
