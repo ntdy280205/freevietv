@@ -26,13 +26,14 @@
 
   <!-- Danh sách kênh -->
   <div class="channel-list">
-    <iframe src="channels.html" class="channel-frame"></iframe>
+    <iframe src="channels.html" class="channel-frame" id="channelFrame"></iframe>
   </div>
 
   <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
   <script>
     const player = videojs('my-video');
     const container = document.getElementById('playerContainer');
+    const channelList = document.querySelector('.channel-list');
 
     // hình chờ loading kênh 
     container.style.setProperty('--poster', 'url("images/tv247_background.png")');
@@ -50,7 +51,23 @@
         player.play();
       }
     });
+
+    // Cập nhật kích thước iframe khi có thay đổi trên màn hình
+    const updateLayout = () => {
+        if (window.innerWidth <= 768) {
+            const playerHeight = container.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const newChannelListHeight = windowHeight - playerHeight;
+            channelList.style.height = `${newChannelListHeight}px`;
+        } else {
+            channelList.style.height = '100%';
+        }
+    };
+
+    // Chạy khi tải trang và khi thay đổi kích thước màn hình
+    window.onload = updateLayout;
+    window.onresize = updateLayout;
+
   </script>
 </body>
 </html>
-
