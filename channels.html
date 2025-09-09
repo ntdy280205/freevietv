@@ -3,80 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font riêng -->
   <style>
+    @font-face {
+      font-family: 'MyCustomFont';
+      src: url('fonts/pinsansbold.ttf') format('ttf');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       margin: 0;
-      background: #1e293b;
+      background: #0f0f0f;   /* nền tổng thể đen xám đậm */
       color: #fff;
-      font-family: sans-serif;
+      font-family: 'MyCustomFont', sans-serif;
     }
+
     .channel {
-      display: block;
+      display: flex;                  /* kênh = flex row */
+      align-items: center;
+      justify-content: space-between; /* tên trái - LIVE phải */
       padding: 1rem;
       margin: .5rem;
-      background: #334155;
+      background: #1c1c1c;
       border-radius: 8px;
       cursor: pointer;
-      text-align: center;
-      transition: background .3s;
+      transition: background .3s, color .3s;
       text-decoration: none;
-      color: #fff;
-      font-weight: bold;
+      color: #e5e5e5;
+      font-weight: 500;
     }
+
     .channel:hover {
-      background: #475569;
+      background: #2a2a2a;
     }
+
     .channel.active {
       background: #dc2626; /* đỏ khi active */
+      color: #fff;
     }
+
     .channel.active:hover {
       background: #b91c1c;
     }
 
+    /* nhãn LIVE bên phải */
+    .channel span.live-label {
+      margin-left: 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #fff;
+      display: none; /* mặc định ẩn */
+    }
+    .channel.active span.live-label {
+      display: inline-block; /* chỉ hiện khi active */
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
-      body {
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
       .channel {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem;
+        padding: 1.25rem;
         margin: 0.5rem 1rem;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+      }
+      .channel span.live-label {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" data-poster="images/tv247_background.png">VTV1</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxch2/vtv2hd_abr.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV2</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxch2/vtv3hd_abr.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV3</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxch2/vtv4hd_abr.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV4</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vntoday_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">Vietnam Today</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/vtv5hd_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV5</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtv5taynguyen_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV5 Tây Nguyên</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtv5tnb_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV5 Tây Nam Bộ</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtv7hd_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV7</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/vtv8hd_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV8</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtv9_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV9</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtvcantho_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">VTV Cần Thơ</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b1800000.m3u8" data-poster="images/tv247_background.png">An Ninh TV</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd2/quocphongvnhd_vhls.smil/chunklist_b1800000.m3u8" data-poster="images/tv247_background.png">Quốc Phòng Việt Nam</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htv1_hls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">HTV1</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htv2hd_vhls.smil/chunklist_b1800000.m3u8" data-poster="images/tv247_background.png">HTV2</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htv3_hls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">HTV3</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htv4_hls.smil/chunklist_b1800000.m3u8" data-poster="images/tv247_background.png">HTV Key</a> 
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htv7hd_vhls.smil/chunklist_b5000000.m3u8" data-poster="images/tv247_background.png">HTV7</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htv9hd_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">HTV9</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/epzhd1/htvcthethao_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">HTV Thể Thao</a>
-  <a href="#" class="channel" data-src="https://cmcdp2.vtvdigital.vn/hls/BINHDUONGTV/01.m3u8" data-poster="images/tv247_background.png">BTV - Bình Dương 1</a>
-  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxsd1/btv9_hls.smil/chunklist_b1800000.m3u8" data-poster="images/tv247_background.png">BTV9 - Bchannel</a>
-  <a href="#" class="channel" data-src="https://cmcdp2.vtvdigital.vn/hls/VUNGTAUTV/03.m3u8" data-poster="images/tv247_background.png">BRT - Vũng Tàu</a>
+  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" data-poster="images/tv247_background.png">
+    <span>VTV1</span>
+    <span class="live-label">ĐANG PHÁT</span>
+  </a>
+  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxch2/vtv2hd_abr.smil/chunklist.m3u8" data-poster="images/tv247_background.png">
+    <span>VTV2</span>
+    <span class="live-label">ĐANG PHÁT</span>
+  </a>
+  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxch2/vtv3hd_abr.smil/chunklist.m3u8" data-poster="images/tv247_background.png">
+    <span>VTV3</span>
+    <span class="live-label">ĐANG PHÁT</span>
+  </a>
+  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxch2/vtv4hd_abr.smil/chunklist.m3u8" data-poster="images/tv247_background.png">
+    <span>VTV4</span>
+    <span class="live-label">ĐANG PHÁT</span>
+  </a>
+  <a href="#" class="channel" data-src="https://live.fptplay53.net/fnxhd1/vntoday_vhls.smil/chunklist.m3u8" data-poster="images/tv247_background.png">
+    <span>VTV5</span>
+    <span class="live-label">ĐANG PHÁT</span>
+  </a>
 
   <script>
     const channels = document.querySelectorAll('.channel');
@@ -85,7 +102,7 @@
       link.addEventListener('click', e => {
         e.preventDefault();
 
-        // remove active cũ
+        // bỏ active cũ
         channels.forEach(ch => ch.classList.remove('active'));
         // set active mới
         link.classList.add('active');
@@ -98,7 +115,7 @@
       });
     });
 
-    // Đặt mặc định active cho kênh đầu tiên khi load
+    // Active mặc định cho kênh đầu tiên
     if (channels.length > 0) {
       channels[0].classList.add('active');
     }
