@@ -35,20 +35,23 @@
     const channelList = document.getElementById('channelList');
     const channelFrame = document.getElementById('channelFrame');
 
-    // hình chờ loading kênh 
+    // Hình chờ mặc định
     container.style.setProperty('--poster', 'url("images/tv247_background.png")');
+
+    // Hàm phát kênh
+    function playChannel(src, poster) {
+      if (poster) {
+        player.poster(poster);
+        container.style.setProperty('--poster', `url("${poster}")`);
+      }
+      player.src({ src, type: 'application/x-mpegURL' });
+      player.play();
+    }
 
     // Nhận tin nhắn từ iframe (khi click kênh)
     window.addEventListener("message", e => {
       if (e.data && e.data.src) {
-        const src = e.data.src;
-        const poster = e.data.poster || '';
-        if (poster) {
-          player.poster(poster);
-          container.style.setProperty('--poster', `url("${poster}")`);
-        }
-        player.src({ src, type: 'application/x-mpegURL' });
-        player.play();
+        playChannel(e.data.src, e.data.poster);
       }
     });
 
@@ -58,17 +61,15 @@
         const doc = channelFrame.contentDocument || channelFrame.contentWindow.document;
         const firstLink = doc.querySelector(".channel a");
         if (firstLink) {
-          const src = firstLink.dataset.src;
-          const poster = firstLink.dataset.poster || '';
-          if (poster) {
-            player.poster(poster);
-            container.style.setProperty('--poster', `url("${poster}")`);
-          }
-          player.src({ src, type: 'application/x-mpegURL' });
-          player.play();
+          playChannel(firstLink.dataset.src, firstLink.dataset.poster);
+        } else {
+          // fallback nếu không có kênh nào
+          playChannel("https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8", "images/tv247_background.png");
         }
       } catch (err) {
         console.warn("Không lấy được kênh đầu tiên:", err);
+        // fallback nếu lỗi cross-origin
+        playChannel("https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8", "images/tv247_background.png");
       }
     });
 
