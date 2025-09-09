@@ -1,19 +1,18 @@
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  height: 100vh;
+  font-family: sans-serif;
   background: #0f172a;
   color: #fff;
-  font-family: sans-serif;
 }
 
-/* Player bên trái */
+/* Player container */
 .player-container {
-  flex: 2;
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* giữ tỉ lệ 16:9 */
   background: #000;
+  overflow: hidden;
 }
 
 /* Background blur */
@@ -29,7 +28,7 @@ body {
   z-index: 0;
 }
 
-/* VideoJS giữ tỉ lệ 16:9 */
+/* VideoJS */
 .player-container .video-js {
   position: relative;
   z-index: 1;
@@ -41,51 +40,40 @@ body {
 .player-container .vjs-tech {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important; /* Giữ nguyên 16:9 */
+  object-fit: contain !important;
   background: transparent;
 }
 
-/* Danh sách kênh bên phải (iframe) */
+/* Channel list */
 .channel-list {
-  flex: 1;
+  width: 100%;
+  max-height: 40vh;
   background: #1e293b;
-  padding: 0;
-  overflow: hidden;
+  overflow-y: auto;
 }
+
 .channel-frame {
   width: 100%;
   height: 100%;
   border: none;
 }
-/* Responsive mobile */
-@media (max-width: 768px) {
+
+/* Desktop layout: chia 2 cột */
+@media (min-width: 1024px) {
   body {
-    display: block;     /* bỏ flex ngang */
-    height: auto;       /* không ép 100vh */
+    display: flex;
+    height: 100vh;
   }
 
   .player-container {
-    flex: none;         /* reset giá trị từ desktop */
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9; /* giữ tỉ lệ 16:9 */
-  }
-
-  /* Blur nền tắt trên mobile để gọn */
-  .player-container::before {
-    display: none;
+    flex: 2;
+    height: 100%; /* full chiều cao */
+    aspect-ratio: auto; /* bỏ ratio vì height đã fix */
   }
 
   .channel-list {
-    flex: none;         /* reset flex */
-    width: 100%;
-    height: auto;
-    max-height: 40vh;   /* chiếm ~40% màn hình */
-    overflow-y: auto;   /* scroll nếu nhiều kênh */
-  }
-
-  .channel-frame {
-    width: 100%;
+    flex: 1;
+    max-height: none;
     height: 100%;
   }
 }
