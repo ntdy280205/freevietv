@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      background: #1e293b;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    .channel {
+      padding: .5rem;
+      margin: .5rem;
+      background: #334155;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .channel:hover {
+      background: #475569;
+    }
+    .channel a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;         
+      align-items: center;
+      gap: 8px;              
+    }
+    .channel-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 4px;
+      background: #fff; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Kênh VTV -->
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist_b5000000.m3u8" data-poster="images/vtv1.png"><img src="images/vtv1.png" class="channel-logo">VTV1</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxch2/vtv2hd_abr.smil/chunklist.m3u8" data-poster="images/vtv2.png"><img src="images/vtv2.png" class="channel-logo">VTV2</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxch2/vtv3hd_abr.smil/chunklist.m3u8" data-poster="images/vtv3.png"><img src="images/vtv3.png" class="channel-logo">VTV3</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxch2/vtv4hd_abr.smil/chunklist.m3u8" data-poster="images/vtv4.png"><img src="images/vtv4.png" class="channel-logo">VTV4</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/vtv5hd_vhls.smil/chunklist.m3u8" data-poster="images/vtv5.png"><img src="images/vtv5.png" class="channel-logo">VTV5</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxhd1/vtv7hd_vhls.smil/chunklist.m3u8" data-poster="images/vtv7.png"><img src="images/vtv7.png" class="channel-logo">VTV7</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/vtv8hd_vhls.smil/chunklist.m3u8" data-poster="images/vtv8.png"><img src="images/vtv8.png" class="channel-logo">VTV8</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxhd1/vtv9_vhls.smil/chunklist.m3u8" data-poster="images/vtv9.png"><img src="images/vtv9.png" class="channel-logo">VTV9</a></div>
+
+  <!-- Kênh HTV và các kênh sau sáp nhập TPHCM -->
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htv1_hls.smil/chunklist.m3u8" data-poster="images/htv1.png"><img src="images/htv1.png" class="channel-logo">HTV1</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htv2hd_vhls.smil/chunklist.m3u8" data-poster="images/htv2.png"><img src="images/htv2.png" class="channel-logo">HTV2</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htv3_hls.smil/chunklist.m3u8" data-poster="images/htv3.png"><img src="images/htv3.png" class="channel-logo">HTV3</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htv4_hls.smil/chunklist.m3u8" data-poster="images/htv4.png"><img src="images/htv4.png" class="channel-logo">HTV4</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htv7hd_vhls.smil/chunklist.m3u8" data-poster="images/htv7.png"><img src="images/htv7.png" class="channel-logo">HTV7</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htv9hd_vhls.smil/chunklist.m3u8" data-poster="images/htv9.png"><img src="images/htv9.png" class="channel-logo">HTV9</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/epzhd1/htvcthethao_vhls.smil/chunklist.m3u8" data-poster="images/htv_sports.png"><img src="images/htv_sports.png" class="channel-logo">HTV Thể Thao</a></div>
+  <div class="channel"><a href="#" data-src="https://cmcdp2.vtvdigital.vn/hls/BINHDUONGTV/01.m3u8" data-poster="images/btv1.png"><img src="images/btv1.png" class="channel-logo">BTV1 Bình Dương</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxsd1/btv9_hls.smil/chunklist.m3u8" data-poster="images/btv9.png"><img src="images/btv9.png" class="channel-logo">BTV9 - Bchannel</a></div>
+  <div class="channel"><a href="#" data-src="https://cmcdp2.vtvdigital.vn/hls/VUNGTAUTV/03.m3u8" data-poster="images/brt.png"><img src="images/brt.png" class="channel-logo">BRT Vũng Tàu</a></div>
+  
+  <!-- Kênh tỉnh -->
+  <div class="channel"><a href="#" data-src="https://cmcdp2.vtvdigital.vn/hls/BINHDUONGTV/01.m3u8" data-poster="images/btv1.png"><img src="images/btv1.png" class="channel-logo">BTV1 Bình Dương</a></div>
+  <div class="channel"><a href="#" data-src="https://live.fptplay53.net/fnxsd1/btv9_hls.smil/chunklist.m3u8" data-poster="images/btv9.png"><img src="images/btv9.png" class="channel-logo">BTV9 - Bchannel</a></div>
+  <div class="channel"><a href="#" data-src="https://cmcdp2.vtvdigital.vn/hls/VUNGTAUTV/03.m3u8" data-poster="images/brt.png"><img src="images/brt.png" class="channel-logo">BRT Vũng Tàu</a></div>
+
+  <!-- JS: gửi dữ liệu về player -->
+  <script>
+    document.querySelectorAll('.channel a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        window.parent.postMessage({
+          src: link.dataset.src,
+          poster: link.dataset.poster
+        }, "*");
+      });
+    });
+  </script>
+</body>
+</html>
