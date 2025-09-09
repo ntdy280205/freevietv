@@ -90,8 +90,13 @@ body {
   }
 
   .channel-list {
-    flex: 1 1 auto;         /* chiếm hết không gian còn lại */
-    overflow-y: auto;
+  flex: none;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - (56vw + 40px)); 
+  /* 56vw ≈ chiều cao video 16:9, 40px = chiều cao footer */
+  overflow-y: auto;
+  padding-bottom: 40px; /* chừa chỗ cho footer */
   }
 
   .channel-frame {
@@ -101,12 +106,17 @@ body {
   }
 
   .footer {
-    flex: 0 0 auto;
-    text-align: center;
-    padding: 8px 0;
-    font-size: 0.85rem;
-    color: #94a3b8;
-    background: #0f172a;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  background: #0f172a;
+  height: 40px; /* giữ chiều cao ổn định */
   }
 
 /* ---------------- Desktop ---------------- */
@@ -148,4 +158,5 @@ body {
     opacity: 0; /* tự ẩn khi không thao tác */
   }
 }
+
 
