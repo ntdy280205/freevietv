@@ -92,8 +92,8 @@ body {
   }
 
 /* Giới hạn chiều cao */
-    max-height: 40vh;   /* chỉ chiếm 40% chiều cao màn hình */
-    margin-top: 8px;    /* thêm khoảng cách nhỏ dưới player */
+    max-height: 30vh;   /* chỉ chiếm 40% chiều cao màn hình */
+    margin-top: 10px;    /* thêm khoảng cách nhỏ dưới player */
     border-top: 2px solid #0f172a; /* tùy chọn, để phân cách */
   }
   
@@ -116,5 +116,6 @@ body {
     opacity: 0;
   }
 }
+
 
 
