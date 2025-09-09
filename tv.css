@@ -67,18 +67,17 @@ body {
 /* ---------------- Mobile ---------------- */
 @media (max-width: 768px) {
   body {
-    display: block;   /* xếp dọc */
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 
-  .player-container {
-    flex: none;
+    .player-container {
+    flex: 0 0 auto;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9; /* giữ đúng 16:9 */
+    aspect-ratio: 16 / 9;
   }
 
-  /* Tắt blur nền trên mobile */
   .player-container::before {
     display: none;
   }
@@ -87,36 +86,28 @@ body {
   .player-container .vjs-tech {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important; /* ép lấp kín, bỏ khoảng trống */
+    object-fit: cover !important;
   }
 
   .channel-list {
-    flex: none;
-    width: 100%;
-    height: auto;
-    max-height: 65vh;     /* list dài hơn */
+    flex: 1 1 auto;         /* chiếm hết không gian còn lại */
     overflow-y: auto;
-    padding-bottom: 40px; /* chừa chỗ cho footer */
   }
 
   .channel-frame {
     width: 100%;
     height: 100%;
+    border: none;
   }
 
   .footer {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    flex: 0 0 auto;
     text-align: center;
     padding: 8px 0;
     font-size: 0.85rem;
     color: #94a3b8;
     background: #0f172a;
   }
-}
 
 /* ---------------- Desktop ---------------- */
 @media (min-width: 1024px) {
@@ -157,3 +148,4 @@ body {
     opacity: 0; /* tự ẩn khi không thao tác */
   }
 }
+
