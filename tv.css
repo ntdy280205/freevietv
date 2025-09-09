@@ -8,7 +8,7 @@ body {
   height: 100vh;
 }
 
-/* Player bên trái */
+/* Player */
 .player-container {
   flex: 2;
   position: relative;
@@ -16,7 +16,7 @@ body {
   background: #000;
 }
 
-/* Background blur */
+/* Background blur - pc only */
 .player-container::before {
   content: "";
   position: absolute;
@@ -29,7 +29,7 @@ body {
   z-index: 0;
 }
 
-/* VideoJS giữ tỉ lệ */
+/* VideoJS */
 .player-container .video-js {
   position: relative;
   z-index: 1;
@@ -45,7 +45,7 @@ body {
   background: transparent;
 }
 
-/* Danh sách kênh bên phải (iframe) */
+/* channellist */
 .channel-list {
   flex: 1;
   background: #1e293b;
@@ -58,7 +58,7 @@ body {
   border: none;
 }
 
-/* ---------------- Mobile (<=768px) ---------------- */
+/* ---------------- Mobile---------------- */
 @media (max-width: 768px) {
   body {
     flex-direction: column;   
@@ -117,4 +117,11 @@ body {
   .vjs-has-started.vjs-user-inactive .vjs-control-bar {
     opacity: 0;
   }
+  
+    /* keep 16:9 fullscreen vertical mobile */
+.video-js.vjs-fullscreen video {
+  object-fit: contain !important;
+  background-color: black; /* có viền đen hai bên trên/dưới */
+  }
 }
+
