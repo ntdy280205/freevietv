@@ -9,6 +9,11 @@
 </head>
 <body>
 
+  <!-- đặt ngay trong body của tv.html -->
+<div class="page-transition active" id="pageTransition">
+  <div class="loader"></div>
+</div>
+
   <!-- Player -->
   <div class="player-container" id="playerContainer">
     <video id="my-video" 
@@ -89,7 +94,18 @@
 
     window.addEventListener("load", updateLayout);
     window.addEventListener("resize", updateLayout);
-    window.addEventListener("orientationchange", updateLayout);
+       window.addEventListener("orientationchange", updateLayout);
+
+    // xử lý overlay khi load
+    window.addEventListener("load", () => {
+      const overlay = document.getElementById("pageTransition");
+      if (overlay) {
+        console.log("Overlay loaded, removing after 600ms...");
+        setTimeout(() => {
+          overlay.classList.remove("active");
+        }, 600);
+      }
+    });
   </script>
 </body>
 </html>

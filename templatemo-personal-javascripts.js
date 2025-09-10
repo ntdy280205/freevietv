@@ -169,3 +169,37 @@ https://templatemo.com/tm-593-personal-shape
                 document.body.style.overflow = 'auto';
             }
         });
+
+        // Hiệu ứng chuyển trang từ index -> tv.html
+        document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("watchTvBtn");
+  const overlay = document.getElementById("pageTransition");
+
+  // nếu không tìm thấy phần tử thì thoát (fallback: link làm việc bình thường)
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
+    // chặn hành vi mặc định (nhảy ngay) để hiện overlay
+    e.preventDefault();
+
+    // nếu overlay không tồn tại thì chuyển thẳng
+    if (!overlay) {
+      window.location.href = btn.getAttribute('href') || 'tv.html';
+      return;
+    }
+
+    // show overlay
+    overlay.classList.add("active");
+    overlay.setAttribute('aria-hidden', 'false');
+
+    // lấy href từ thẻ a (đảm bảo dùng href gốc)
+    const target = btn.getAttribute('href') || 'tv.html';
+
+    // chờ 1s (1000ms) rồi chuyển trang
+    setTimeout(() => {
+      // dùng location.assign để có thể back về index bằng history
+      window.location.assign(target);
+    }, 1000);
+  });
+});
+

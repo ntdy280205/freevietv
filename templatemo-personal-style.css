@@ -1255,3 +1255,38 @@ https://templatemo.com/tm-593-personal-shape
 .cta-button {
     animation: fadeInUp 1.5s ease 0.8s forwards;
 }
+
+/* Overlay đen khi chuyển trang */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 9999;
+}
+.page-transition.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.loader {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.12);
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Chỉ áp dụng cho màn hình nhỏ (mobile) */
+@media (max-width: 768px) {
+  html, body {
+    overflow: hidden; /* chặn cuộn */
+    height: 100%;
+  }
+}

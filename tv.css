@@ -58,6 +58,41 @@ body {
   border: none;
 }
 
+/* Overlay đen toàn màn hình */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 9999;
+}
+
+/* Khi active thì hiện overlay */
+.page-transition.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Loader hình tròn xoay */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top: 6px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* ---------------- Mobile---------------- */
 @media (max-width: 768px) {
   body {
@@ -125,3 +160,32 @@ body {
   }
 }
 
+/* Áp dụng riêng cho mobile */
+@media (max-width: 768px) {
+  body {
+    padding-top: 12px; /* tạo khoảng cách với mép trên màn hình */
+    box-sizing: border-box;
+  }
+
+  .player-container {
+    transform: scale(0.97);       /* thu nhỏ toàn bộ player */
+    transform-origin: top center; 
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+}
+
+/* trong channels.html <style> hoặc chuyển qua tv.css nếu import chung */
+body {
+  margin: 0;
+  background-color: #121212; /* cùng màu với tv.html */
+}
+
+/* Chỉ áp dụng cho màn hình nhỏ (mobile) */
+@media (max-width: 768px) {
+  html, body {
+    overflow: hidden; /* chặn cuộn */
+  }
+}
