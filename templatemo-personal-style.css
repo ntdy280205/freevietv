@@ -1,10 +1,3 @@
-/*
-
-TemplateMo 593 personal shape
-
-https://templatemo.com/tm-593-personal-shape
-
-*/
 
 @charset "utf-8";
 /* CSS Document */
@@ -332,7 +325,7 @@ https://templatemo.com/tm-593-personal-shape
     justify-content: center;
     background: 
         linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3)), /* overlay tối để chữ rõ */
-        url('images/anh_nen_test.webp') center/cover no-repeat;
+        url('images/1223994638.jpg') center/cover no-repeat;
     position: relative;
     overflow: hidden;
 }
@@ -1220,14 +1213,14 @@ https://templatemo.com/tm-593-personal-shape
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('images/anh_nen_test.webp') center/cover no-repeat;
+    background: url('images/1223994638.jpg') center/cover no-repeat;
     position: relative;
     overflow: hidden;
 
     /* hiệu ứng mờ lúc đầu */
     filter: blur(20px);
     transform: scale(1.05); /* tránh viền xấu khi blur */
-    animation: bgUnblur 2s ease-out forwards;
+    animation: bgUnblur 1.5s ease-out forwards;
 }
 
 /* Keyframes cho hiệu ứng unblur */
@@ -1290,3 +1283,57 @@ https://templatemo.com/tm-593-personal-shape
     height: 100%;
   }
 }
+.hero-content {
+    color: #000000;
+}
+
+.hero h1 {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    color: #ffffff; /* Màu đen */
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease 0.4s forwards;
+    line-height: 1.1;
+    letter-spacing: -1px;
+
+    /* Đổ bóng đen mạnh */
+    text-shadow: 
+        3px 3px 6px rgba(0, 0, 0, 0.8),
+        3px 3px 6px rgba(0, 0, 0, 0.8),
+}
+
+.hero .subtitle {
+    color: #fffdfd; /* Màu xám đậm */
+    text-shadow: 
+        3px 3px 6px rgba(0, 0, 0, 0.8),
+}
+
+/* About Us link với gradient */
+.about-us-link {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1001;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-lg);
+}
+
+.about-us-link:hover {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+
