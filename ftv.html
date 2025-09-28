@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/8.21.1/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@latest/dist/videojs-http-streaming.js"></script>
+  
+  <style>
+    /* Custom play button styling */
+    .video-js .vjs-big-play-button {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      width: 120px !important;
+      height: 120px !important;
+      border-radius: 50% !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/109/109197.png') !important;
+      background-size: contain !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      opacity: 0.9 !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .video-js .vjs-big-play-button:hover {
+      opacity: 1 !important;
+      transform: translate(-50%, -50%) scale(1.1) !important;
+    }
+    
+    /* Hide the default play icon */
+    .video-js .vjs-big-play-button .vjs-icon-play {
+      display: none !important;
+    }
+    
+    /* Alternative: Use a custom SVG play button */
+    .custom-play-button {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='rgba(255,255,255,0.1)' stroke='%23fff' stroke-width='2'/%3E%3Cpolygon points='40,30 40,70 70,50' fill='%23fff'/%3E%3C/svg%3E") !important;
+    }
+    
+    /* Glassmorphism play button style */
+    .glass-play-button {
+      background: rgba(255, 255, 255, 0.15) !important;
+      backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+    }
+    
+    .glass-play-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 25px solid rgba(255, 255, 255, 0.9);
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+    }
+  </style>
+  
+  <title>FTV Thu Nghiem</title>
+</head>
+<body>
+
+<header>
+ <div>Freevietv - Kenh test</div>
+</header>
+ 
+<div align="center">
+    <video-js id="live_stream" class="video-js vjs-default-skin vjs-big-play-centered glass-play-button" controls preload="auto" autoplay="true" width="1280" height="720" poster="https://static.vecteezy.com/system/resources/previews/004/435/977/non_2x/live-now-streaming-news-background-live-streaming-broadcasting-online-stream-symbols-for-news-tv-movies-shows-vector.jpg">
+    <source src="https://live.freevietv.dpdns.org/kenh-tv/ftv/index.m3u8" type="application/x-mpegURL">
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+    </video-js>
+    
+  <script>
+    // Define your backup streams in order of preference
+    var streamUrls = [
+      'https://live.fptplay53.net/epzhd2/vinhlong1_vhls.smil/chunklist_b5000000.m3u8', // Primary stream
+      // Add more backup URLs as needed
+    ];
+    
+    var currentStreamIndex = 0;
+    var player = videojs('live_stream');
+    var retryAttempts = 0;
+    var maxRetries = 3;
+    
+    // Function to try the next stream
+    function tryNextStream() {
+      if (currentStreamIndex < streamUrls.length - 1) {
+        currentStreamIndex++;
+        retryAttempts = 0;
+        console.log('Automatically switching to backup stream:', streamUrls[currentStreamIndex]);
+        player.src({
+          src: streamUrls[currentStreamIndex],
+          type: 'application/x-mpegURL'
+        });
+        player.play();
+      } else {
+        // All streams failed, start over from the first one after a delay
+        console.log('All streams failed, will retry from beginning in 30 seconds...');
+        setTimeout(() => {
+          currentStreamIndex = 0;
+          retryAttempts = 0;
+          player.src({
+            src: streamUrls[currentStreamIndex],
+            type: 'application/x-mpegURL'
+          });
+          player.play();
+        }, 30000); // Wait 30 seconds before retrying
+      }
+    }
+    
+    // Function to retry current stream
+    function retryCurrentStream() {
+      if (retryAttempts < maxRetries) {
+        retryAttempts++;
+        console.log(`Retrying current stream (attempt ${retryAttempts}/${maxRetries})...`);
+        setTimeout(() => {
+          player.src({
+            src: streamUrls[currentStreamIndex],
+            type: 'application/x-mpegURL'
+          });
+          player.play();
+        }, 3000); // Wait 3 seconds before retry
+      } else {
+        console.log('Max retries reached, switching to next stream...');
+        tryNextStream();
+      }
+    }
+    
+    // Handle stream errors and switch to backup
+    player.on('error', function() {
+      console.log('Stream error detected...');
+      retryCurrentStream();
+    });
+    
+    // Handle when the stream ends or goes offline
+    player.on('ended', function() {
+      console.log('Stream ended...');
+      retryCurrentStream();
+    });
+    
+    // Handle loading errors
+    player.on('loadstart', function() {
+      // Set a timeout to detect if the stream fails to load
+      setTimeout(() => {
+        if (player.readyState() === 0) {
+          console.log('Stream failed to load, trying next...');
+          tryNextStream();
+        }
+      }, 10000); // Wait 10 seconds for stream to start loading
+    });
+    
+    // Start playing the initial stream
+    player.play();
+  </script>
+</div>
+    
+</body>
+</html>
